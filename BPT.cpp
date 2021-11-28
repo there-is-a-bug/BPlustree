@@ -110,21 +110,22 @@ Node *BPlusTree::SearchNum(int num, BPNode *curr){
 /* 进行范围查找，输入左界和右界，若相同，则为查找单个数据 */
 Node *BPlusTree::SearchNums(int left, int right){
     Node *tmp = SearchNum(left, this->root);
-    if(!tmp)
-    cout << "No Such number!" << endl;
+    int i = 0;
     while(tmp){
         if(tmp->value < left)
         tmp = tmp->next;
         else if(!tmp || tmp->value > right)
         break;
         else{
+            i++;
             cout << tmp->value << ' ';
             tmp = tmp->next;
         }
     }
+    if(i == 0)
+    cout << "No Such number!" << endl;
     cout << endl;
     return NULL;
-
 }
 
 /* 判断结构是否改变 */
